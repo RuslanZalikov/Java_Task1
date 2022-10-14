@@ -1,6 +1,6 @@
 public class task {
     public static void main(String[] args){
-        System.out.println(sumOfCubes(new int[] {1, 2, 3}));
+        System.out.println(profitableGamble(1, 2, 2));
     }
     public static int remainder(int a, int b){return a%b;}
     public static int triArea(int n, int f){return n*f/2;}
