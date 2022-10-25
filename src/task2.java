@@ -1,5 +1,20 @@
 public class task2 {
     public static void main(String[] args){
+        System.out.println(repeat("mice", 5));
+        System.out.println(differenceMaxMin(new int[] {10, 2, 34, 5, 67}));
+        System.out.println(isAvgWhole(new int[] {10, 2, 34, 5, 67}));
+        int[] S = cumulativeSum(new int[] {10, 2, 34, 5, 67});
+        System.out.println("-----------------");
+        for (int i = 0; i < S.length; i++){
+            System.out.println(S[i]);
+        }
+        System.out.println("-----------------");
+        System.out.println(getDecimalPlaces("43.56"));
+        System.out.println(Fibonacci(7));
+        System.out.println(isValid("59001"));
+        System.out.println(isStrangePair("ratio", "orator"));
+        System.out.println(isPrefix("automatic", "auto-"));
+        System.out.println(isPostfix("automation", "-mation"));
         System.out.println(step(8));
     }
     public static String repeat(String s, int n){ //вернуть строку где каждый элемент повторяется n раз
