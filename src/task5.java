@@ -3,6 +3,10 @@ import java.awt.*;
 import java.util.*;
 import java.math.BigInteger;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+
+
 public class task5 {
     public static void main(String[] args){
         System.out.println("-----------------\n1.\n-----------------");
@@ -21,10 +25,11 @@ public class task5 {
         System.out.println("-----------------\n7.\n-----------------");
         System.out.println(numToEng(0));
         System.out.println("-----------------\n8.\n-----------------");
+        System.out.println(getSha256Hash("Hello World"));
         System.out.println("-----------------\n9.\n-----------------");
         System.out.println(correctTitle("TYRION LANNISTER, HAND OF THE QUEEN."));
         System.out.println("-----------------\n10.\n-----------------");
-        System.out.println(hexLattice(37));
+        System.out.println(hexLattice(61));
 
     }
 
@@ -233,6 +238,27 @@ public class task5 {
     }
 
 
+    private static String getSha256Hash(String s) {
+    try {
+    // шифруем в байты строку через MessageDigest
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(s.getBytes(StandardCharsets.UTF_8));
+    // переводим байты в хеш
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    } catch (Exception e) {
+            return null;
+        }
+    }
+
+
     public static String correctTitle(String s){
         String[] new_s = s.split(" ");
         s = "";
@@ -254,11 +280,11 @@ public class task5 {
                 double D = Math.sqrt(12*k - 3);
                 int n = (3 + (int)Math.round(D)) / 6;
                 for (int j = n; j <= n*2 - 1; j++){
-                    new_s += help_hexLattice(j);
+                    new_s += help_hexLattice(j, n*2 - 1);
                     new_s += '\n';
                 }
                 for (int j = n*2 - 2; j >= n; j--){
-                    new_s += help_hexLattice(j);
+                    new_s += help_hexLattice(j, n*2 - 1);
                     new_s += '\n';
                 }
                 return new_s;
@@ -266,10 +292,13 @@ public class task5 {
         }
         return "invalid";
     }
-    public static String help_hexLattice(int n){
+    public static String help_hexLattice(int n, int n_max){
         String new_s = "";
+        for (int i = n; i < n_max; i++){
+            new_s += " ";
+        }
         for (int i = 0; i < n; i++){
-            new_s += "o";
+            new_s += "o ";
         }
         return new_s;
     }

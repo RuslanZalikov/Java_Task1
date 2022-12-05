@@ -20,7 +20,9 @@ public class task4 {
         System.out.println("-----------------\n6.\n-----------------");
         System.out.println(bugger(4));
         System.out.println("-----------------\n7.\n-----------------");
-        System.out.println(toStarShorthand("abbccc"));
+        System.out.println(toStarShorthand("abbcccaa"));
+        System.out.println("-----------------\n7.2\n-----------------");
+        System.out.println(toStarShorthandUpdate("abbcccaa"));
         System.out.println("-----------------\n8.\n-----------------");
         System.out.println(doesRhyme("Sam I am!", "Green eggs and HAM."));
         System.out.println("-----------------\n9.\n-----------------");
@@ -166,6 +168,27 @@ public class task4 {
         }
         return new_s;
     }
+    public static String toStarShorthandUpdate(String s){
+        s += "$";
+        String new_s = "";
+        int count = 1;
+        for (int i = 1; i < s.length(); i++){
+            if (s.charAt(i-1) == s.charAt(i)) {
+                count++;
+            }
+            else{
+                if(count == 1){
+                    new_s += s.charAt(i-1);
+                }
+                else{
+                    new_s += s.charAt(i-1) + "*" + count;
+                }
+                count = 1;
+            }
+        }
+        return new_s;
+    }
+
     public static boolean doesRhyme(String s_f, String s_s){
         String[] new_s_f = s_f.substring(s_f.lastIndexOf(" ")).toLowerCase().split("[^aeyuio]");
         String[] new_s_s = s_s.substring(s_s.lastIndexOf(" ")).toLowerCase().split("[^aeyuio]");
